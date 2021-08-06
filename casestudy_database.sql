@@ -4,10 +4,10 @@ use case_study;
 
 create table account(
 id_account int primary key auto_increment,
-username varchar(200),
+username varchar(200) unique,
 password varchar(200),
-phonenumber varchar(10),
-gmail varchar(200),
+phonenumber varchar(10) unique,
+gmail varchar(200) unique,
 address varchar(200),
 type varchar(5) default "USER"
 );
@@ -31,21 +31,26 @@ foreign key (id_sp) references product(id_sp)
 );
 
 create table product(
-id_sp int primary key,
+id_sp int primary key auto_increment,
 name_sp varchar(200),
 mau_sp varchar(200),
-id_hang int,
+tenhanng varchar(200),
 loaisp varchar(200),
 soluong int,
 price int,
-foreign key (id_hang) references hangsx(id_hang)
+img varchar(1000)
 );
 
-create table hangsx(
-id_hang int primary key,
-gianhapkhau int
+create table typeProduct(
+id int primary key,
+id_type int,
+id_sp int,
+foreign key (id_sp) references product(id_sp),
+foreign key (id_type) references type(id_type)
 );
 
-ALTER TABLE detail_bill
-ADD COLUMN soluongmua int;
+create table type(
+id_type int primary key,
+name_type varchar(200)
+);
 
