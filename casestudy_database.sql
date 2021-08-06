@@ -41,16 +41,7 @@ price int,
 img varchar(1000)
 );
 
-create table typeProduct(
-id int primary key,
-id_type int,
-id_sp int,
-foreign key (id_sp) references product(id_sp),
-foreign key (id_type) references type(id_type)
-);
 
-create table type(
-id_type int primary key,
-name_type varchar(200)
-);
-
+select name_type from type inner join typeProduct on type.id_type = typeProduct.id_type
+inner join product on product.id_sp = typeProduct.id_sp
+where product.id_sp = 1
